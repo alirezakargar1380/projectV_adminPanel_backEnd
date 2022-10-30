@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateCustomerDto } from './dto/customers.dto';
 import { Customers } from './entitys/customers.entity';
 
 @Injectable()
@@ -12,6 +13,11 @@ export class CustomerService {
 
     async findAll(): Promise<Customers[]> {
         return await this.customersRepository.find();
+    }
+
+    // : Promise<Customers>
+    add(data: CreateCustomerDto) {
+        return this.customersRepository.save(data);
     }
 
     //   findOne(id: number): Promise<Customer> {
