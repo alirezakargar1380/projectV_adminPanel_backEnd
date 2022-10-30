@@ -7,6 +7,11 @@ import { UsersModule } from './users/users.module'
 import { CustomersModule } from './customers/customers.module';
 import { User } from './users/entitys/users.entity';
 import { Customers } from './customers/entitys/customers.entity';
+import { AccountsModule } from './accounts/accounts.module';
+import { Accounts } from './accounts/entitys/accounts.entity';
+import { OrdersService } from './orders/orders.service';
+import { OrdersController } from './orders/orders.controller';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
@@ -17,18 +22,22 @@ import { Customers } from './customers/entitys/customers.entity';
       username: 'root',
       password: '',
       database: 'vpn',
-      entities: [User, Customers],
+      entities: [User, Customers, Accounts],
       autoLoadEntities: true,
       synchronize: true,
     }),
     UsersModule,
-    CustomersModule
+    CustomersModule,
+    AccountsModule,
+    OrdersModule
   ],
   controllers: [
-    AppController
+    AppController,
+    OrdersController
   ],
   providers: [
-    AppService
+    AppService,
+    OrdersService
   ],
 })
 
